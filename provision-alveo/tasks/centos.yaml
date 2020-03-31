@@ -1,0 +1,37 @@
+---
+# tasks file for provision-alveo
+- name: Set up CentOS
+  package:
+     name: epel-release
+     state: present
+
+- name: Install XRT on CentOS
+  yum:
+     name: '{{ base_url }}{{ xrt_package_centos }}'
+     state: present
+  when: install_xrt
+     
+- name: Install U280 on CentOS
+  yum:
+     name: '{{ base_url }}{{ U280_package_centos }}'
+     state: present
+  when: install_U280
+
+- name: Install U250 on CentOS
+  yum:
+     name: '{{ base_url }}{{ U250_package_centos }}'
+     state: present
+  when: install_U250
+
+- name: Install U200 on CentOS
+  yum:
+     name: '{{ base_url }}{{ U200_package_centos }}'
+     state: present
+  when: install_U200
+
+- name: Install U50 on CentOS
+  yum:
+     name: '{{ base_url }}{{ U50_package_centos }}'
+     state: present
+  when: install_U50
+

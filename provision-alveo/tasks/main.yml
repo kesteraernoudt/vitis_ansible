@@ -1,0 +1,45 @@
+---
+# Include Variables ##########
+
+- name: Include version specific files for XRT
+  include_vars: "XRT-{{ xrt_version }}.yaml"
+  when: install_xrt
+
+- name: Include version specific files for U200
+  include_vars: "U200-{{ U200_version }}.yaml"
+  when: install_U200
+
+- name: Include version specific files for U250
+  include_vars: "U250-{{ U250_version }}.yaml"
+  when: install_U250
+
+- name: Include version specific files for U280
+  include_vars: "U280-{{ U280_version }}.yaml"
+  when: install_U280
+
+- name: Include version specific files for U50
+  include_vars: "U50-{{ U50_version }}.yaml"
+  when: install_U50
+
+##########
+
+- set_fact:
+     base_url: "https://www.xilinx.com/bin/public/openDownload?filename="
+
+- name: add centos specific tasks
+  import_tasks: centos.yaml
+  when:
+     - ansible_distribution == 'CentOS'
+
+- name: add ubuntu 16 specific tasks
+  import_tasks: ubuntu16.yaml
+  when:
+     - ansible_distribution == 'Ubuntu'
+     - ansible_distribution_major_version == "16"
+
+- name: add ubuntu 18 specific tasks
+  import_tasks: ubuntu18.yaml
+  when:
+     - ansible_distribution == 'Ubuntu'
+     - ansible_distribution_major_version == "18"
+

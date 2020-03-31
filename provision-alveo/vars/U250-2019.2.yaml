@@ -1,0 +1,7 @@
+# 2019.2 U250 packages
+
+U250_package_centos: xilinx-u250-xdma-201830.2-2580015.x86_64.rpm
+
+U250_package_ubuntu16: xilinx-u250-xdma-201830.2-2580015_16.04.deb
+
+U250_package_ubuntu18: xilinx-u250-xdma-201830.2-2580015_18.04.deb

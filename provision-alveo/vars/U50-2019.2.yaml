@@ -1,0 +1,7 @@
+# 2019.2 U200 packages
+
+U200_package_centos: xilinx-u50-xdma-201920.1-2699728.x86_64.rpm
+
+U200_package_ubuntu16: xilinx-u50-xdma-201920.1-2699728_16.04.deb
+
+U200_package_ubuntu18: xilinx-u50-xdma-201920.1-2699728_18.04.deb

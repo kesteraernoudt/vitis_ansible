@@ -1,0 +1,18 @@
+---
+# defaults file for provision-alveo
+
+install_xrt: True
+xrt_version: 2019.2
+
+
+install_U200: False
+U200_version: 2019.2
+
+install_U250: False
+U250_version: 2019.2
+
+install_U280: False
+U280_version: 2019.2
+
+install_U50: False
+U50_version: 2019.2

@@ -1,0 +1,7 @@
+# 2019.2 U280 packages
+
+U280_package_centos: xilinx-u280-xdma-201920.1-2699728.x86_64.rpm
+
+U280_package_ubuntu16: xilinx-u280-xdma-201920.1-2699728_16.04.deb
+
+U280_package_ubuntu18: xilinx-u280-xdma-201920.1-2699728_18.04.deb
