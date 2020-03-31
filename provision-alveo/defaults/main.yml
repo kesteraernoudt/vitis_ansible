@@ -5,14 +5,14 @@ install_xrt: True
 xrt_version: 2019.2
 
 
-install_U200: False
+install_U200: True
 U200_version: 2019.2
 
-install_U250: False
+install_U250: True
 U250_version: 2019.2
 
-install_U280: False
+install_U280: True
 U280_version: 2019.2
 
-install_U50: False
+install_U50: True
 U50_version: 2019.2
