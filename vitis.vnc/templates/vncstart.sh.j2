@@ -1,0 +1,12 @@
+#!/bin/bash
+{% if vnc_client_only_localhost == True %}
+/usr/bin/vncserver :{{ item.item.vnc_num }} -localhost {{ vnc_client_options }} {{ vnc_client_options_per_user | default() }}
+{% else %}
+
+{% if ansible_distribution == 'Ubuntu' %}
+/usr/bin/vncserver :{{ item.item.vnc_num }} -localhost off {{ vnc_client_options }} {{ vnc_client_options_per_user | default() }}
+{% else %}
+/usr/bin/vncserver :{{ item.item.vnc_num }} {{ vnc_client_options }} {{ vnc_client_options_per_user | default() }}
+{% endif %}
+
+{% endif %}

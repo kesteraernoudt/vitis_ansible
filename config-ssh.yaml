@@ -1,0 +1,65 @@
+---
+ - hosts: all
+   gather_facts: no
+   become: yes
+
+   tasks:
+
+   - name: Make sure we have a 'adm' group
+     group:
+       name=adm
+       state=present
+
+   - name: Make sure we have a 'sudo' group
+     group:
+       name=sudo
+       state=present
+
+   - name: Make sure we have a 'wheel' group
+     group:
+       name=wheel
+       state=present
+
+   - name: Add the user 'vitis'
+     user:
+       name: vitis
+       comment: vitis
+       append: true
+       groups: sudo,wheel,adm
+       update_password: always
+       password: '$6$TH8Gw9K7tEf$oUpZTdibMlB/04uDnYndqzBHHQA8EbcYWjlkEVA/qSwqeE7qlvuSJrVyJEaBcHXKRhKOlC9i2KWhpoX07QsVX1'
+
+   - name: Add vitis user to the sudoers
+     copy:
+          dest: "/etc/sudoers.d/vitis"
+          content: "vitis  ALL=(ALL)  NOPASSWD: ALL"
+
+   - name: Deploy SSH Key
+     authorized_key: user=vitis
+                     key="{{ lookup('file', '/home/vitis/.ssh/id_rsa.pub') }}"
+                     state=present
+
+   - name: Disable Password Authentication
+     lineinfile:
+           dest=/etc/ssh/sshd_config
+           regexp='^PasswordAuthentication'
+           line="PasswordAuthentication no"
+           state=present
+           backup=yes
+
+   - name: Disable Root Login
+     lineinfile:
+           dest=/etc/ssh/sshd_config
+           regexp='^PermitRootLogin'
+           line="PermitRootLogin no"
+           state=present
+           backup=yes
+     notify:
+       - restart ssh
+
+   handlers:
+   - name: restart ssh
+     service:
+       name=sshd
+       state=restarted
+

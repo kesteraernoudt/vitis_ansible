@@ -1,0 +1,30 @@
+---
+ - hosts: all
+   gather_facts: no
+   become: yes
+   become_user: vitis
+
+   tasks:
+   - set_fact:
+        home_dir: "{{ lookup('env', 'HOME') }}"
+
+   - name: Insert/Update .inputrc file
+     blockinfile:
+        path: "{{home_dir}}/.inputrc"
+        create: true
+        block: |
+           "\e[5~": history-search-backward
+           "\e[6~": history-search-forward
+           "\e[1~": beginning-of-line
+           "\e[4~": end-of-line
+
+   - name: Insert/Update .bashr file
+     blockinfile:
+        path: "{{home_dir}}/.bashrc"
+        create: true
+        block: |
+           alias vncserver='vncserver -geometry 1900x1137 -depth 24 -dpi 80'
+           alias l='ls -al'
+           alias xrt='source /opt/xilinx/xrt/setup.sh'
+           alias flash='sudo /opt/xilinx/xrt/bin/xbmgmt flash --scan --verbose'
+

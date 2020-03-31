@@ -1,0 +1,15 @@
+ansible-playbook ansible/config-ssh.yaml --ask-pass --ask-become-pass
+
+ansible-playbook ansible/config-ssh.yaml --ask-pass --ask-become-pass --user sdaccel -l "ansible03,ansible04"
+
+
+ansible-playbook ansible/config-ssh.yaml --ask-pass --ask-become-pass --user sdaccel --limit 'xfremeasae_centos'
+
+ansible-playbook ansible/config-ssh.yaml --list-hosts
+
+ansible-playbook ansible/ping.yaml --list-hosts
+
+ansible-playbook ansible/ping.yaml
+
+
+
