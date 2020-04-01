@@ -1,0 +1,20 @@
+---
+## set up a new Alveo Server completely
+## run as
+# ansible-playbook -i hosts setup-alveo.yaml --ask-pass --ask-become-pass --user <username> --limit "your new host"
+
+- name: configure vitis user and set up ssh
+  include: config-ssh.yaml
+
+- name: setup basic packages
+  include: install-basics.yaml
+
+- name: update userfiles
+  include: update_userfiles.yaml
+
+- name: setup vnc
+  include: tigervnc.yaml
+
+- name: provision Alveo packages
+  include: provision-alveo.yaml
+

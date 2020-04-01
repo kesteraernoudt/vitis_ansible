@@ -47,6 +47,7 @@
 ansible01 ansible_host=192.168.100.230
 ansible02 ansible_host=192.168.100.188
 ansible03 ansible_host=192.168.100.194
+ansible05 ansible_host=192.168.100.217
 
 #centos hosts
 [xfremeasae_centos]
